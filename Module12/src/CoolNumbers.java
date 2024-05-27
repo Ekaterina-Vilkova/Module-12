@@ -1,10 +1,6 @@
 import java.util.*;
 
 public class CoolNumbers {
-
-//    String regex = "[АВЕКМНОРСТУХ] ([0-9]\1\1) [АВЕКМНОРСТУХ] {2} [0-9] {2,3}";
-
-
     public static ArrayList<String> generateCoolNumbers() {
         String text = "";
 
@@ -48,10 +44,9 @@ public class CoolNumbers {
                                 for (int a = 0; a < count; a++) {
                                     Collections.shuffle(oneNumberRegion);
                                     for (String oneRegin : oneNumberRegion) {
+                                        region1 = oneRegin;
                                         if (region1.equals("0")) { // т.е. если первый элемент 0, то не прописывать, верно ли аписан код?
                                             region1 = "";
-                                        } else {
-                                            region1 = oneRegin;
                                         }
                                         Collections.shuffle(numberRegion);
                                         for (String twoRegion : numberRegion) {
