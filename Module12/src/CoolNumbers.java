@@ -18,7 +18,6 @@ public class CoolNumbers {
 
 
         ArrayList<String> coolNumbers = new ArrayList<>();
-//        int count = 500;
         int count = 2000005;
         ArrayList<String> letter = new ArrayList<>(Arrays.asList("А", "В", "Е", "К", "М", "Н", "О", "Р", "С", "Т", "У", "Х"));
         ArrayList<String> number = new ArrayList<>(Arrays.asList("111", "222", "333", "444", "555", "666", "777", "888", "999"));
@@ -45,7 +44,7 @@ public class CoolNumbers {
                                     Collections.shuffle(oneNumberRegion);
                                     for (String oneRegin : oneNumberRegion) {
                                         region1 = oneRegin;
-                                        if (region1.equals("0")) { // т.е. если первый элемент 0, то не прописывать, верно ли аписан код?
+                                        if (region1.equals("0")) {
                                             region1 = "";
                                         }
                                         Collections.shuffle(numberRegion);
@@ -57,7 +56,7 @@ public class CoolNumbers {
                                             }
                                         }
                                     }
-                                    text = firstLetter + numbers + lastLetter  + region1 + region2 + region3;
+                                    text = firstLetter + numbers + lastLetter + region1 + region2 + region3;
                                     coolNumbers.add(text);
                                 }
                             }

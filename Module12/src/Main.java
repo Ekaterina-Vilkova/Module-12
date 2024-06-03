@@ -2,8 +2,6 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-//        String regex = "[АВЕКМНОРСТУХ] ([0-9]\1\1) [АВЕКМНОРСТУХ] {2} [0-9] {2,3}";
-
 
         ArrayList<String> listNumbers = CoolNumbers.generateCoolNumbers();
         for (int l = 0; l < listNumbers.size(); l++) {
@@ -14,36 +12,41 @@ public class Main {
         String enteringNumber = new Scanner(System.in).nextLine();
 
         long startFor = System.nanoTime();
+
         if (listNumbers.contains(enteringNumber)) {
-            System.out.println("Поиск перебором: номер найден, поиск занял " + (System.nanoTime() - startFor) + " нс");
+            searchYes(startFor, "перебором");
         } else {
-            System.out.println("Поиск перебором: номер не найден, поиск занял " + (System.nanoTime() - startFor) + " нс");
+            searchNot(startFor, "перебором");
         }
 
-        ArrayList<String> sortListNumber = new ArrayList<>(listNumbers);
+        ArrayList<String> sortListNumber = listNumbers;
         Collections.sort(sortListNumber);
-        long startBinary = System.nanoTime();
-        if (Collections.binarySearch(sortListNumber, enteringNumber) == 0) {
-            System.out.println("Бинарный поиск: номер найден, поиск занял " + (System.nanoTime() - startBinary) + " нс");
+        if (Collections.binarySearch(sortListNumber, enteringNumber) >= 0) {
+            searchYes(startFor, "бинарный");
         } else {
-            System.out.println("Бинарный поиск: номер не найден, поиск занял " + (System.nanoTime() - startBinary) + " нс");
+            searchNot(startFor, "бинарный");
         }
 
         HashSet<String> hashSet = new HashSet<>(listNumbers);
-        long startHash = System.nanoTime();
         if (hashSet.contains(enteringNumber)) {
-            System.out.println("Поиск в HashSet: номер найден, поиск занял " + (System.nanoTime() - startHash) + " нс");
+            searchYes(startFor, "в HashSet");
         } else {
-            System.out.println("Поиск в HashSet: номер не найден, поиск занял " + (System.nanoTime() - startHash) + " нс");
+            searchNot(startFor, "в HashSet");
         }
 
         TreeSet<String> treeSet = new TreeSet<>(listNumbers);
-        long startTree = System.nanoTime();
         if (treeSet.contains(enteringNumber)) {
-            System.out.println("Поиск в TreeSet: номер найден, поиск занял " + (System.nanoTime() - startTree) + " нс");
+            searchYes(startFor, "в TreeSet");
         } else {
-            System.out.println("Поиск в TreeSet: номер не найден, поиск занял " + (System.nanoTime() - startTree) + " нс");
+            searchNot(startFor, "в TreeSet");
         }
+    }
 
+    public static void searchYes(long startFor, String searchName) {
+        System.out.println("Поиск " + searchName + ": номер найден, поиск занял " + (System.nanoTime() - startFor) + " нс");
+    }
+
+    public static void searchNot(long startFor, String searchName) {
+        System.out.println("Поиск " + searchName + ": номер не найден, поиск занял " + (System.nanoTime() - startFor) + " нс");
     }
 }
